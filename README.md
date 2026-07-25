@@ -20,8 +20,8 @@ uv run pytest -q
 ## Start your project
 
 1. Get the template running (above).
-2. Follow [`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md).
-3. Fill and paste [`docs/prompts/START_NEW_PROJECT.md`](docs/prompts/START_NEW_PROJECT.md) into any coding agent or chat LLM.
+2. Clone/copy into a new folder ([`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md)).
+3. Paste [`docs/prompts/START_NEW_PROJECT.md`](docs/prompts/START_NEW_PROJECT.md) into any coding agent — replace the **IDEA** with what you want; the agent fills the rest.
 
 ## Layout
 

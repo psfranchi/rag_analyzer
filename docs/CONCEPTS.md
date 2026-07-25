@@ -52,16 +52,10 @@ You do **not** wait for a data source to invent the id.
 
 Same domain, **many** entities: repeat with `--entity celeste`, etc. Each gets its own documents and reports in the DB.
 
-## What to write in the new-project prompt
+## What to put in the new-project IDEA
 
-When the prompt asks for **entity identity**, describe the *rule* for ids — not every possible item:
-
-```text
-- Entity identity: short game slug chosen by the user (folder name under data/games/<slug>/), e.g. hades, celeste
-```
-
-Bad: a long free-form title as the only id (`The Legend of Zelda: Breath of the Wild`).  
-Good: a stable slug (`zelda-botw`) even if the display name is longer.
+You only need a plain-language goal. Example: “games notebook — local notes per game, JSON on whether it looks interesting.”  
+The agent picks domain slug, entity id rules, sources, and schema. Use this doc when you (or the agent) need the vocabulary.
 
 ## What this template is not (yet)
 

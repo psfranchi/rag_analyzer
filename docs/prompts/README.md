@@ -1,10 +1,9 @@
 # Prompts
 
-One prompt to specialize this template into your analyzer:
-
 → [`START_NEW_PROJECT.md`](START_NEW_PROJECT.md)
 
-Fill the `YOUR_…` blanks, paste the fenced block into any coding agent or chat LLM.  
-Read [`CONCEPTS.md`](../CONCEPTS.md) if domain vs entity is unclear. Point the agent at [`AI_CONTEXT.md`](../AI_CONTEXT.md) as well.
+Write a short **IDEA** (what you want to research). Paste the prompt into any coding agent — it fills domain, sources, schema, and samples from that idea.
 
-This template stays **tool-agnostic**: no vendor agent folders, rules files, or IDE plugins are required.
+Optional background: [`CONCEPTS.md`](../CONCEPTS.md), [`AI_CONTEXT.md`](../AI_CONTEXT.md).
+
+Tool-agnostic: no vendor agent folders or rules packs required.

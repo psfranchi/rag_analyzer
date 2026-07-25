@@ -26,7 +26,7 @@ You choose `--entity`; sources fetch docs for that id. Details: [`CONCEPTS.md`](
 
 ## How to specialize
 
-Clone this template → fill [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md) → follow [`NEW_PROJECT.md`](NEW_PROJECT.md).
+Clone this template → replace the **IDEA** in [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md) → paste into a coding agent ([`NEW_PROJECT.md`](NEW_PROJECT.md)). The agent invents domain, sources, and schema from your idea.
 
 ## Commands
 

@@ -179,9 +179,9 @@ Loaded by `app/config.py` (pydantic-settings) from the process cwd `.env`.
 
 ## Next: your topic
 
-- Concepts (domain vs entity): [`CONCEPTS.md`](CONCEPTS.md)
-- Specialize this template: [`NEW_PROJECT.md`](NEW_PROJECT.md)
-- Prompt: [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md)
+- What the template does + specialize: [`NEW_PROJECT.md`](NEW_PROJECT.md)
+- Short IDEA prompt: [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md)
+- Vocabulary: [`CONCEPTS.md`](CONCEPTS.md)
 
 ## Lint / format
 

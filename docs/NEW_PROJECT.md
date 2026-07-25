@@ -1,48 +1,37 @@
 # Start a new analyzer project
 
-This repo is a **template**. Clone it, then specialize it for one research topic (laws, games, product reviews, …).
+This repo is a **template**. The platform is fixed; your topic is not.
 
-**Before the prompt:** read [`CONCEPTS.md`](CONCEPTS.md) (domain vs entity, many entities, how ids relate to data).
+## What you get out of the box
+
+| Capability | Meaning |
+|------------|---------|
+| Dual-model RAG | Embedding model + analysis model (Ollama) |
+| Ingest | Get documents for one subject → chunk → embed → Postgres/pgvector |
+| Analyze | Retrieve → JSON research notes (validated) |
+| Together | `scripts/run_entity.py` runs ingest then analyze |
+| Domain plugin | Your topic’s sources, prompts, and labels in `app/domains/<slug>/` |
+
+Vocabulary (domain vs entity, many subjects): [`CONCEPTS.md`](CONCEPTS.md) — useful background, not a form to fill.
 
 ## Steps
 
-1. Smoke-test the template (see [`SETUP.md`](SETUP.md)).
-2. Copy the repo (or create a new GitHub repo from this template). Remove the template `origin` remote, then add *your* repo when ready.
-3. Create a Postgres DB + set `.env` from `.env.example`.
-4. Open [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md), fill the blanks, paste into any coding agent or chat LLM.
-5. Drop the example `notes` domain once yours works (the prompt covers this).
+1. Smoke-test the template ([`SETUP.md`](SETUP.md)).
+2. Copy/clone this repo into a new folder. Remove the template `origin` remote; add yours later.
+3. `.env` + Postgres + Ollama as in SETUP.
+4. Open [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md), replace the **IDEA** paragraph with what you want, paste into any coding agent.
+5. Let the agent invent domain name, sources, schema, and sample data. Iterate in chat if needed.
 
-## What gets customized
+## What the agent customizes vs leaves alone
 
-| Customize | Leave alone (platform) |
-|-----------|------------------------|
-| `app/domains/<your_domain>/` | `app/db/`, `app/ollama/`, `app/ingestion/`, `app/rag/`, `app/analysis/` |
-| Labels, prompts, Pydantic schema | Dual-model Ollama wiring |
-| Document sources / fetchers | Chunking, embeddings, retrieval loop |
-| `data/<domain>/<entity>/…` sample files | Generic `Entity` / `Document` / `AnalysisReport` tables |
-| Domain tests under `tests/` | `scripts/ingest_entity.py`, `scripts/analyze_entity.py` |
+| Customize | Leave alone |
+|-----------|-------------|
+| `app/domains/<slug>/`, sample `data/…`, prompts, labels, schema | `app/db/`, `app/ollama/`, `app/ingestion/`, `app/rag/`, `app/analysis/` |
+| Product README / docs tone | Thin CLIs (`ingest_entity`, `analyze_entity`, `run_entity`) |
 
-Your domain package must call `register_domain(...)` at import time. Subpackages under `app/domains/` are **auto-discovered** — no edit to `registry.py`.
-
-## DomainAdapter checklist (what the agent implements)
-
-1. Copy `app/domains/notes/` → `app/domains/<slug>/`.
-2. Entity ids: short stable slugs (see [`CONCEPTS.md`](CONCEPTS.md)); support **many** entities under one domain.
-3. `DocumentSource.fetch(entity_key)` returns `source_type`, `source_url`, `title`, `published_at`, `raw_text`.
-4. `source_quality`, `build_queries`, `score_chunk`.
-5. `refresh_facts` — deterministic only; never invent from the LLM.
-6. Labels + Pydantic schema + `schema_text` + system prompt, kept in sync.
-7. `persist_report` into generic `analysis_reports`.
-8. Sample data for **at least one** entity + tests + any new env vars in `.env.example` / `SETUP.md`.
-
-## Success criteria
+## Success
 
 ```bash
-uv run python scripts/ingest_entity.py --domain <your_domain> --entity <key>
-uv run python scripts/analyze_entity.py --domain <your_domain> --entity <key>
+uv run python scripts/run_entity.py --domain <slug> --entity <example>
 uv run pytest -q
 ```
-
-Validated JSON research notes grounded in retrieved context — not invented facts.
-
-Document for users that the product has two faces (**ingest** and **analyze**) and that `scripts/run_entity.py` runs both together.
