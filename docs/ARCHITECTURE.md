@@ -36,4 +36,4 @@ See `app/domains/base.py`. Platform code only talks to the adapter interface.
 
 Registration: each `app/domains/<slug>/` package calls `register_domain` on import. `get_domain` / `list_domains` auto-import those subpackages.
 
-Specialize via [`NEW_PROJECT.md`](NEW_PROJECT.md) or [`ADDING_A_DOMAIN.md`](ADDING_A_DOMAIN.md).
+Specialize via [`NEW_PROJECT.md`](NEW_PROJECT.md) and [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md).

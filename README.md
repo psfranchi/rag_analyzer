@@ -1,7 +1,7 @@
 # RAG Analyzer
 
 Local **dual-model RAG** template: one Ollama model for **embeddings**, one for **analysis**.  
-Postgres + pgvector stores documents and chunks. Domains (notes, laws, …) plug in via a `DomainAdapter`.
+Postgres + pgvector stores documents and chunks. Your topic plugs in via a `DomainAdapter`.
 
 Research notebook you configure — not advice. **Tool-agnostic:** no IDE vendor agent folders or rules packs required.
 
@@ -10,39 +10,36 @@ Research notebook you configure — not advice. **Tool-agnostic:** no IDE vendor
 ```bash
 # install uv once: curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
-cp .env.example .env   # set DATABASE_URL; create DB + pgvector (see docs/SETUP.md)
+cp .env.example .env   # macOS/Linux install + Ollama/DB: docs/SETUP.md
 uv run python scripts/init_db.py
 uv run python scripts/ingest_entity.py --domain notes --entity demo
 uv run python scripts/analyze_entity.py --domain notes --entity demo
 uv run pytest -q
 ```
 
-## Start a project for your topic
+## Start your project
 
 1. Get the template running (above).
-2. Choose a path:
-   - **Add a domain** here → [`docs/ADDING_A_DOMAIN.md`](docs/ADDING_A_DOMAIN.md)
-   - **Specialize the whole repo** → [`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md)
-3. Paste a filled prompt from [`docs/prompts/`](docs/prompts/) into any coding agent or chat LLM to scaffold sources, labels, and schema.
+2. Follow [`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md).
+3. Fill and paste [`docs/prompts/START_NEW_PROJECT.md`](docs/prompts/START_NEW_PROJECT.md) into any coding agent or chat LLM.
 
 ## Layout
 
 | Path | Role |
 |------|------|
 | `app/` | Platform (db, ollama, ingest, rag, analysis) |
-| `app/domains/` | Pluggable domains (`notes` ships as example) |
+| `app/domains/` | Topic plugin (`notes` ships as example) |
 | `scripts/` | Thin CLIs |
 | `docs/` | Setup, architecture, new-project guide |
-| `docs/prompts/` | Copy-paste prompts to bootstrap a domain or product |
+| `docs/prompts/` | Copy-paste prompt to bootstrap your product |
 
 ## Docs
 
-- [`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md) — fork or add a topic
-- [`docs/prompts/`](docs/prompts/) — AI prompts to start fast
+- [`docs/NEW_PROJECT.md`](docs/NEW_PROJECT.md) — specialize this template
+- [`docs/prompts/START_NEW_PROJECT.md`](docs/prompts/START_NEW_PROJECT.md) — prompt to start fast
 - [`docs/AI_CONTEXT.md`](docs/AI_CONTEXT.md) — short brief for any human or coding agent
 - [`docs/SETUP.md`](docs/SETUP.md)
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
-- [`docs/ADDING_A_DOMAIN.md`](docs/ADDING_A_DOMAIN.md)
 
 ## Commands
 

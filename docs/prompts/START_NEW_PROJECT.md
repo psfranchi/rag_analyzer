@@ -1,4 +1,4 @@
-# Prompt: specialize this repo into a single-topic project
+# Prompt: start a new project
 
 Fill every `YOUR_…` field, then paste everything below the line into any coding agent or chat LLM.
 
@@ -10,7 +10,6 @@ You are specializing the rag_analyzer template into a dedicated research analyze
 Read first:
 - docs/AI_CONTEXT.md
 - docs/NEW_PROJECT.md
-- docs/ADDING_A_DOMAIN.md
 - docs/ARCHITECTURE.md
 - app/domains/base.py
 - app/domains/notes/__init__.py
@@ -19,22 +18,21 @@ Read first:
 
 - Product / project name: YOUR_PROJECT_NAME
 - Research topic in one sentence: YOUR_TOPIC
-- Primary domain slug: YOUR_DOMAIN_SLUG
+- Domain slug (folder name): YOUR_DOMAIN_SLUG
 - Who the user is and what question they answer with each run: YOUR_USER_JOB
 - Entity identity (stable keys): YOUR_ENTITY_KEYS
 - Document sources: YOUR_SOURCES
 - Output labels + JSON fields that matter: YOUR_OUTPUT_SCHEMA
 - Facts that must stay deterministic (never LLM-invented): YOUR_FACTS
-- Keep the example `notes` domain? YOUR_KEEP_NOTES (yes/no)
 - New env vars: YOUR_ENV_VARS (or "none")
 
 ## Deliverables
 
 1. Rename branding in README.md and pyproject.toml description to YOUR_PROJECT_NAME (keep package layout unless clearly better).
-2. Implement app/domains/YOUR_DOMAIN_SLUG/ as the primary DomainAdapter.
-3. If YOUR_KEEP_NOTES is no, remove notes domain + its tests/demo data only after the new domain has tests and a smoke path.
+2. Implement app/domains/YOUR_DOMAIN_SLUG/ as the DomainAdapter (copy notes, then specialize).
+3. Remove the example notes domain, its tests, and demo data only after the new domain has tests and a smoke path.
 4. Sample data + docs so a newcomer can: uv sync → .env → init_db → ingest → analyze.
-5. Update docs/SETUP.md, docs/ADDING_A_DOMAIN.md examples, and docs/AI_CONTEXT.md to describe THIS product (still mention DomainAdapter for future domains).
+5. Update docs/SETUP.md, docs/NEW_PROJECT.md, and docs/AI_CONTEXT.md to describe THIS product.
 6. Ensure domain auto-discovery works (register_domain in the package; no hardcoded registry imports).
 7. Add/adjust tests; run pytest and ruff.
 

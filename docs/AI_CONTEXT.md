@@ -8,7 +8,7 @@ Local **dual-model RAG** template:
 
 1. **Embedding model** (Ollama) → chunk vectors in Postgres/pgvector  
 2. **Analysis model** (Ollama) → JSON research notes  
-3. **DomainAdapter** → domain-specific sources, prompts, labels, persistence  
+3. **DomainAdapter** → topic-specific sources, prompts, labels, persistence  
 
 **Tool-agnostic:** works with any editor or coding agent. No vendor agent folders, rules packs, or IDE plugins are part of this template.
 
@@ -21,11 +21,7 @@ Local **dual-model RAG** template:
 
 ## How to specialize
 
-| Goal | Doc / prompt |
-|------|----------------|
-| New domain in this repo | [`ADDING_A_DOMAIN.md`](ADDING_A_DOMAIN.md) + [`prompts/START_NEW_DOMAIN.md`](prompts/START_NEW_DOMAIN.md) |
-| Fork into one product | [`NEW_PROJECT.md`](NEW_PROJECT.md) + [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md) |
-| Tighten an existing domain | [`prompts/REFINE_DOMAIN.md`](prompts/REFINE_DOMAIN.md) |
+Clone this template → fill [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md) → follow [`NEW_PROJECT.md`](NEW_PROJECT.md).
 
 ## Commands
 
@@ -41,3 +37,5 @@ uv run ruff check .
 ## Stack
 
 Python 3.11+, uv, Postgres + pgvector, Ollama (`nomic-embed-text`, `qwen3:8b` by default).
+
+Env: `DATABASE_URL`, `OLLAMA_URL`, `EMBEDDING_MODEL`, `ANALYSIS_MODEL` — see [`SETUP.md`](SETUP.md) (includes macOS and Linux install notes). Same `.env` on both OSes.
