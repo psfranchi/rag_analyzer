@@ -136,16 +136,21 @@ On some setups you must allow password auth in `pg_hba.conf` for local TCP (`loc
 psql "postgresql://rag:rag@localhost:5432/rag_analyzer" -c "SELECT extname FROM pg_extension WHERE extname = 'vector';"
 ```
 
-## 4. Init schema + smoke
+## Smoke (notes domain)
+
+`--domain notes` is the topic. `--entity demo` is **one** subject (folder `data/notes/demo/`).  
+Add another subject anytime as `data/notes/<other_id>/` and pass `--entity <other_id>`. See [`CONCEPTS.md`](CONCEPTS.md).
+
+Two faces: **ingest** (docs → embeddings) and **analyze** (RAG → JSON). Run them separately or together:
 
 ```bash
 uv run python scripts/init_db.py
 uv run python scripts/ingest_entity.py --domain notes --entity demo
 uv run python scripts/analyze_entity.py --domain notes --entity demo
+# same as both steps:
+uv run python scripts/run_entity.py --domain notes --entity demo
 uv run pytest -q
 ```
-
-Demo markdown: `data/notes/demo/`.
 
 ## Configuration
 
@@ -174,6 +179,7 @@ Loaded by `app/config.py` (pydantic-settings) from the process cwd `.env`.
 
 ## Next: your topic
 
+- Concepts (domain vs entity): [`CONCEPTS.md`](CONCEPTS.md)
 - Specialize this template: [`NEW_PROJECT.md`](NEW_PROJECT.md)
 - Prompt: [`prompts/START_NEW_PROJECT.md`](prompts/START_NEW_PROJECT.md)
 

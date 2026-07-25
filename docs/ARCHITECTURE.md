@@ -1,7 +1,25 @@
 # Architecture
 
+## Domain vs entity
+
+| | Role | CLI |
+|--|------|-----|
+| Domain | Topic plugin (`app/domains/<slug>/`) | `--domain notes` |
+| Entity | One subject; many per domain | `--entity demo` |
+
+See [`CONCEPTS.md`](CONCEPTS.md). Pipeline below always runs for **one** `(domain, entity)` pair.
+
+## Pipeline
+
+Two faces for each `(domain, entity)`:
+
+1. **Ingest** — fetch → chunk → embed → store  
+2. **Analyze** — retrieve → prompt → JSON report  
+
+CLI: `ingest_entity.py` and `analyze_entity.py` separately, or `run_entity.py` for both. See [`CONCEPTS.md`](CONCEPTS.md).
+
 ```text
-Document sources (domain)
+Document sources (domain, for one entity)
     → chunk + embed (platform, Ollama embedding model)
     → Postgres / pgvector
     → retrieve + context (platform; domain supplies queries)

@@ -12,6 +12,11 @@ Local **dual-model RAG** template:
 
 **Tool-agnostic:** works with any editor or coding agent. No vendor agent folders, rules packs, or IDE plugins are part of this template.
 
+## Domain vs entity
+
+**Domain** = topic plugin. **Entity** = one subject per run; many entities per domain.  
+You choose `--entity`; sources fetch docs for that id. Details: [`CONCEPTS.md`](CONCEPTS.md).
+
 ## Non-negotiables
 
 - Hard facts (prices, statutes, citations, dates, IDs) come from **deterministic sources / facts bundles**, never invented by the LLM.
@@ -30,6 +35,7 @@ uv sync
 uv run python scripts/init_db.py
 uv run python scripts/ingest_entity.py --domain notes --entity demo
 uv run python scripts/analyze_entity.py --domain notes --entity demo
+uv run python scripts/run_entity.py --domain notes --entity demo   # ingest + analyze
 uv run pytest -q
 uv run ruff check .
 ```
